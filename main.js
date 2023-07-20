@@ -43,7 +43,8 @@ operators.forEach(sign => {
 
 equal.addEventListener('click', ()=>{
     let clickedNumbers = result.textContent.split(operatorSign);
-    secondNumber = clickedNumbers[1];
-    console.log(result.textContent)
+    secondNumber = parseInt(clickedNumbers[1]);
+    const answer = operate(parseInt(firstNumber), secondNumber, operator);
+    console.log(answer)
 })
 
