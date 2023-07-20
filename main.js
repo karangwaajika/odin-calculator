@@ -4,6 +4,7 @@ let operator;
 const numbers = document.querySelectorAll('.number');
 const result = document.querySelector('.result');
 const equal = document.querySelector('.equal');
+const operators = document.querySelectorAll('.operator');
 
 
 const add = (a, b)=>{
@@ -27,6 +28,12 @@ function operate(nbr1, nbr2, operator){
 numbers.forEach(nbr => {
     nbr.addEventListener('click',e=>{
         result.textContent += e.target.textContent;
+    })
+});
+
+operators.forEach(sign => {
+    sign.addEventListener('click', sign=>{
+        result.textContent += sign.target.textContent;
     })
 });
 
