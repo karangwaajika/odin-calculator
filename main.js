@@ -22,8 +22,25 @@ const divide = (a, b)=>{
 };
 
 function operate(nbr1, nbr2, operator){
-    const addition = add(nbr1, nbr2);
-    return addition;
+    switch (operator){
+        case 'plus':
+            const plus = add(nbr1, nbr2);
+            return plus;
+            break;
+        case 'minus':
+            const minus = subtract(nbr1, nbr2);
+            return minus;
+            break;
+        case 'times':
+            const times = multiply(nbr1, nbr2);
+            return times;
+            break;
+        default:
+            const divides = divide(nbr1, nbr2);
+            return divides;
+            break;
+    }
+        
 }
 
 numbers.forEach(nbr => {
