@@ -1,3 +1,7 @@
+let firstNumber;
+let secondNumber;
+let operator;
+
 const add = (a, b)=>{
     return a+b;
 };
@@ -11,7 +15,9 @@ const divide = (a, b)=>{
     return a/b;
 };
 
-console.log(add(1,2));
-console.log(subtract(1,2));
-console.log(multiply(1,2));
-console.log(divide(1,2));
+function operate(nbr1, nbr2, operator){
+    const addition = add(nbr1, nbr2);
+    return addition;
+}
+
+console.log(operate(1,2,'addition'));
