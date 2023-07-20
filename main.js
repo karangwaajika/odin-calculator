@@ -62,6 +62,8 @@ equal.addEventListener('click', ()=>{
     let clickedNumbers = result.textContent.split(operatorSign);
     secondNumber = parseInt(clickedNumbers[1]);
     const answer = operate(parseInt(firstNumber), secondNumber, operator);
-    console.log(answer)
+    const answerDiv = document.createElement('div');
+    answerDiv.textContent = answer;
+    result.appendChild(answerDiv);
 })
 
