@@ -1,6 +1,8 @@
 let firstNumber;
 let secondNumber;
 let operator;
+const numbers = document.querySelectorAll('.number');
+const result = document.querySelector('.result');
 
 const add = (a, b)=>{
     return a+b;
@@ -20,4 +22,8 @@ function operate(nbr1, nbr2, operator){
     return addition;
 }
 
-console.log(operate(1,2,'addition'));
+numbers.forEach(nbr => {
+    nbr.addEventListener('click',e=>{
+        result.textContent += e.target.textContent;
+    })
+});
