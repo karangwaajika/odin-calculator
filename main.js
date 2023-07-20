@@ -3,6 +3,8 @@ let secondNumber;
 let operator;
 const numbers = document.querySelectorAll('.number');
 const result = document.querySelector('.result');
+const equal = document.querySelector('.equal')
+
 
 const add = (a, b)=>{
     return a+b;
@@ -27,3 +29,8 @@ numbers.forEach(nbr => {
         result.textContent += e.target.textContent;
     })
 });
+
+equal.addEventListener('click', ()=>{
+    console.log(result.textContent)
+})
+
