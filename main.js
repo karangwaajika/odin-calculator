@@ -1,6 +1,7 @@
 let firstNumber;
 let secondNumber;
 let operator;
+let operatorSign;
 const numbers = document.querySelectorAll('.number');
 const result = document.querySelector('.result');
 const equal = document.querySelector('.equal');
@@ -35,11 +36,14 @@ operators.forEach(sign => {
     sign.addEventListener('click', sign=>{
         firstNumber = result.textContent;
         operator = sign.target.getAttribute('id');
-        result.textContent += sign.target.textContent;
+        operatorSign = sign.target.textContent;
+        result.textContent += operatorSign;
     })
 });
 
 equal.addEventListener('click', ()=>{
+    let clickedNumbers = result.textContent.split(operatorSign);
+    secondNumber = clickedNumbers[1];
     console.log(result.textContent)
 })
 
