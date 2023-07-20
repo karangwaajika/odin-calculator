@@ -33,6 +33,8 @@ numbers.forEach(nbr => {
 
 operators.forEach(sign => {
     sign.addEventListener('click', sign=>{
+        firstNumber = result.textContent;
+        operator = sign.target.getAttribute('id');
         result.textContent += sign.target.textContent;
     })
 });
