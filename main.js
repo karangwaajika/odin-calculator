@@ -3,7 +3,7 @@ let secondNumber;
 let operator;
 const numbers = document.querySelectorAll('.number');
 const result = document.querySelector('.result');
-const equal = document.querySelector('.equal')
+const equal = document.querySelector('.equal');
 
 
 const add = (a, b)=>{
