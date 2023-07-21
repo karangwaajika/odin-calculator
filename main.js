@@ -53,10 +53,29 @@ numbers.forEach(nbr => {
 });
 
 decimal.addEventListener('click',e=>{
-    if(!result.textContent.includes('.')){
-        result.textContent += e.target.textContent;
+    let arrayOfClickedElements = [];
+    let clickedElements = result.textContent;
+
+    for(let i = 0; i < clickedElements.length; i++){
+        arrayOfClickedElements.push(clickedElements[i]);
     }
-    
+    const numberOfSigns = arrayOfClickedElements
+                                .filter(element=>element == 'x' || element== '/' || element == '+' || element == '-')
+                                .reduce((tot, signs)=>{
+                                    return tot+1;
+                                },0); 
+    if(numberOfSigns==0){
+        if(!result.textContent.includes('.')){ //check the first number if it has "."
+            result.textContent += e.target.textContent;
+        }
+    } 
+    else{
+        let clickedNumbers = result.textContent.split(operatorSign);
+        let secondDigit = clickedNumbers[1];
+        if(!secondDigit.toString().includes('.')){ //check the second number if it has "."
+            result.textContent += e.target.textContent;
+        }
+    }                           
 })
 
 operators.forEach(sign => {
