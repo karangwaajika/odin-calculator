@@ -6,6 +6,7 @@ const numbers = document.querySelectorAll('.number');
 const result = document.querySelector('.result');
 const equal = document.querySelector('.equal');
 const operators = document.querySelectorAll('.operator');
+const clear = document.querySelector('.clear');
 
 
 const add = (a, b)=>{
@@ -111,3 +112,6 @@ equal.addEventListener('click', ()=>{
     }
 })
 
+clear.addEventListener('click', ()=>{
+    result.textContent = '';
+})
