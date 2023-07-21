@@ -89,11 +89,25 @@ operators.forEach(sign => {
 });
 
 equal.addEventListener('click', ()=>{
-    let clickedNumbers = result.textContent.split(operatorSign);
-    secondNumber = Number(clickedNumbers[1]);
-    const answer = operate(Number(firstNumber), secondNumber, operatorSign);
-    const answerDiv = document.createElement('div');
-    answerDiv.textContent = answer;
-    result.appendChild(answerDiv);
+    
+    if(operatorSign === undefined){
+        alert("Please Provide an Operator!");
+    }
+    else{
+        let clickedNumbers = result.textContent.split(operatorSign);
+        secondNumber = clickedNumbers[1];
+        if(firstNumber == ''){
+            alert("Please Provide First Number!");
+        }
+        else if(secondNumber == ''){
+            alert("Please Provide Second Number!");
+        }
+        else{
+            const answer = operate(Number(firstNumber), Number(secondNumber), operatorSign);
+            const answerDiv = document.createElement('div');
+            answerDiv.textContent = answer;
+            result.appendChild(answerDiv);
+        }
+    }
 })
 
