@@ -72,9 +72,10 @@ decimal.addEventListener('click',e=>{
         }
     } 
     else{
+
         let clickedNumbers = result.textContent.split(operatorSign);
         let secondDigit = clickedNumbers[1];
-        if(!secondDigit.toString().includes('.')){ //check the second number if it has "."
+        if(!secondDigit.toString().includes('.') && secondDigit != ''){ //check the second number if it has "." avoid to be preceded by an operator
             result.textContent += e.target.textContent;
         }
     }                           
