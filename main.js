@@ -79,9 +79,11 @@ operators.forEach(sign => {
             firstNumber = parseInt(clickedNumbers[0]);
             secondNumber = parseInt(clickedNumbers[1]);
             const answer = operate(firstNumber, secondNumber, firstOperatorSign[0]);
-            const answerDiv = document.createElement('div');
-            answerDiv.textContent = answer;
-            result.appendChild(answerDiv);
+            
+            operatorSign = clickedElements[clickedElements.length - 1];
+            firstNumber = answer;
+            result.textContent = `${firstNumber}${operatorSign}`
+
         }
     })
 });
