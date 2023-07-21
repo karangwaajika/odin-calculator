@@ -84,41 +84,54 @@ deleteBtn.addEventListener('click', ()=>{
     result.textContent = subResult;
 })
 operators.forEach(sign => {
-    sign.addEventListener('click', sign=>{
+    sign.addEventListener('click', x=>{
         firstNumber = result.textContent;
-        operatorSign = sign.target.textContent;
-        result.textContent += operatorSign;
-        let arrayOfClickedElements = [];
-        let clickedElements = result.textContent;
-
-        for(let i = 0; i < clickedElements.length; i++){
-            arrayOfClickedElements.push(clickedElements[i]);
+        if(x.target.textContent == '/' && firstNumber == ''){
+            result.textContent = firstNumber;
         }
-
-        const numberOfSigns = arrayOfClickedElements
-                                .filter(element=>element == 'x' || element== '/' || element == '+' || element == '-')
-                                .reduce((tot, signs)=>{
-                                    return tot+1;
-                                },0);                            
+        else if(x.target.textContent == 'x' && firstNumber == ''){
+            result.textContent = firstNumber;
+        }
+        else if(x.target.textContent == '+' && firstNumber == ''){
+            result.textContent = firstNumber;
+        }
+        else{
+            operatorSign = x.target.textContent;
+            result.textContent += operatorSign;
+            let arrayOfClickedElements = [];
+            let clickedElements = result.textContent;
     
-        if(numberOfSigns>1){
-            
-            let firstPair = clickedElements.slice(0, clickedElements.length - 1);
-            const listOfOperatorSigns = Array.from(document.querySelectorAll('.operator'));
-            const firstOperatorSign = listOfOperatorSigns
-                                        .map(operateSign => operateSign.textContent)
-                                        .filter(sign=>firstPair.includes(sign))
-             
-            let clickedNumbers = firstPair.split(firstOperatorSign[0]);
-            firstNumber = Number(clickedNumbers[0]);
-            secondNumber = Number(clickedNumbers[1]);
-            const answer = operate(firstNumber, secondNumber, firstOperatorSign[0]);
-            
-            operatorSign = clickedElements[clickedElements.length - 1];
-            firstNumber = answer;
-            result.textContent = `${firstNumber}${operatorSign}`
+            for(let i = 0; i < clickedElements.length; i++){
+                arrayOfClickedElements.push(clickedElements[i]);
+            }
+    
+            const numberOfSigns = arrayOfClickedElements
+                                    .filter(element=>element == 'x' || element== '/' || element == '+' || element == '-')
+                                    .reduce((tot, signs)=>{
+                                        return tot+1;
+                                    },0);                            
+        
+            if(numberOfSigns>1){
+                
+                let firstPair = clickedElements.slice(0, clickedElements.length - 1);
+                const listOfOperatorSigns = Array.from(document.querySelectorAll('.operator'));
+                const firstOperatorSign = listOfOperatorSigns
+                                            .map(operateSign => operateSign.textContent)
+                                            .filter(e=>firstPair.includes(e))
+                 
+                let clickedNumbers = firstPair.split(firstOperatorSign[0]);
+                firstNumber = Number(clickedNumbers[0]);
+                secondNumber = Number(clickedNumbers[1]);
+                const answer = operate(firstNumber, secondNumber, firstOperatorSign[0]);
+                
+                operatorSign = clickedElements[clickedElements.length - 1];
+                firstNumber = answer;
+                result.textContent = `${firstNumber}${operatorSign}`
+    
+            }
 
         }
+       
     })
 });
 
