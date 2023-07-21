@@ -8,6 +8,7 @@ const equal = document.querySelector('.equal');
 const operators = document.querySelectorAll('.operator');
 const clear = document.querySelector('.clear');
 const body = document.querySelector('body');
+const decimal = document.querySelector('.decimal');
 
 
 const add = (a, b)=>{
@@ -50,6 +51,13 @@ numbers.forEach(nbr => {
         result.textContent += e.target.textContent;
     })
 });
+
+decimal.addEventListener('click',e=>{
+    if(!result.textContent.includes('.')){
+        result.textContent += e.target.textContent;
+    }
+    
+})
 
 operators.forEach(sign => {
     sign.addEventListener('click', sign=>{

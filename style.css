@@ -34,10 +34,13 @@ button.operator{
     background-color: rgb(236, 236, 236);
     font-size: 20px;
 }
-button.seven{
+button.decimal{
     border-radius: 0 0 0 9px ;
+    font-weight: bold;
+    font-size: 40px;
+    padding:10px 10px 20px 10px;
 }
-button.zero{
+button.delete{
     border-radius: 0 0 9px 0 ;
 }
 button.equal{
