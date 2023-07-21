@@ -86,7 +86,15 @@ deleteBtn.addEventListener('click', ()=>{
 })
 operators.forEach(sign => {
     sign.addEventListener('click', x=>{
+        let checkSequenceOperator = 0;
         firstNumber = result.textContent;
+        let operatorsElement = Array.from(operators).map(el => el.textContent);
+        for(i in operatorsElement){
+            if(operatorsElement[i] == firstNumber[firstNumber.length -1]){
+                checkSequenceOperator++;
+            }
+        }
+                       
         if(x.target.textContent == '/' && firstNumber == ''){
             result.textContent = firstNumber;
         }
@@ -100,6 +108,9 @@ operators.forEach(sign => {
             body.appendChild(errorDiv);
         }
         else if(x.target.textContent == '+' && firstNumber == ''){
+            result.textContent = firstNumber;
+        }
+        else if(checkSequenceOperator > 0 && x.target.textContent == firstNumber[firstNumber.length -1]){
             result.textContent = firstNumber;
         }
         else{
@@ -132,11 +143,18 @@ operators.forEach(sign => {
                     let clickedNumbers = firstPair.split(firstOperatorSign[0]);
                     firstNumber = Number(clickedNumbers[0]);
                     secondNumber = Number(clickedNumbers[1]);
-                    const answer = operate(firstNumber, secondNumber, firstOperatorSign[0]);
+                    if(secondNumber != ''){
+                        const answer = operate(firstNumber, secondNumber, firstOperatorSign[0]);
                     
-                    operatorSign = clickedElements[clickedElements.length - 1];
-                    firstNumber = answer;
-                    result.textContent = `${firstNumber}${operatorSign}`
+                        operatorSign = clickedElements[clickedElements.length - 1];
+                        firstNumber = answer;
+                        result.textContent = `${firstNumber}${operatorSign}`
+                    }
+                    else{
+                        result.textContent = firstNumber+x.target.textContent;
+                    }
+                    
+                    
         
                 }
             } 
@@ -152,11 +170,18 @@ operators.forEach(sign => {
                     let clickedNumbers = firstPair.split(firstOperatorSign[0]);
                     firstNumber = Number(clickedNumbers[0]);
                     secondNumber = Number(clickedNumbers[1]);
-                    const answer = operate(firstNumber, secondNumber, firstOperatorSign[0]);
+                    if(secondNumber != ''){
+                        const answer = operate(firstNumber, secondNumber, firstOperatorSign[0]);
                     
-                    operatorSign = clickedElements[clickedElements.length - 1];
-                    firstNumber = answer;
-                    result.textContent = `${firstNumber}${operatorSign}`
+                        operatorSign = clickedElements[clickedElements.length - 1];
+                        firstNumber = answer;
+                        result.textContent = `${firstNumber}${operatorSign}`
+                    }
+                    else{
+                        result.textContent = firstNumber+x.target.textContent;
+                    }
+                    
+                    
         
                 }
             }                                                 
