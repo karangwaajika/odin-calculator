@@ -23,15 +23,15 @@ const divide = (a, b)=>{
 
 function operate(nbr1, nbr2, operator){
     switch (operator){
-        case 'plus':
+        case '+':
             const plus = add(nbr1, nbr2);
             return plus;
             break;
-        case 'minus':
+        case '-':
             const minus = subtract(nbr1, nbr2);
             return minus;
             break;
-        case 'times':
+        case 'x':
             const times = multiply(nbr1, nbr2);
             return times;
             break;
@@ -52,7 +52,6 @@ numbers.forEach(nbr => {
 operators.forEach(sign => {
     sign.addEventListener('click', sign=>{
         firstNumber = result.textContent;
-        operator = sign.target.getAttribute('id');
         operatorSign = sign.target.textContent;
         result.textContent += operatorSign;
     })
@@ -61,7 +60,7 @@ operators.forEach(sign => {
 equal.addEventListener('click', ()=>{
     let clickedNumbers = result.textContent.split(operatorSign);
     secondNumber = parseInt(clickedNumbers[1]);
-    const answer = operate(parseInt(firstNumber), secondNumber, operator);
+    const answer = operate(parseInt(firstNumber), secondNumber, operatorSign);
     const answerDiv = document.createElement('div');
     answerDiv.textContent = answer;
     result.appendChild(answerDiv);
