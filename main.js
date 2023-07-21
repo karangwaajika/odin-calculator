@@ -54,6 +54,35 @@ operators.forEach(sign => {
         firstNumber = result.textContent;
         operatorSign = sign.target.textContent;
         result.textContent += operatorSign;
+        let arrayOfClickedElements = [];
+        let clickedElements = result.textContent;
+
+        for(let i = 0; i < clickedElements.length; i++){
+            arrayOfClickedElements.push(clickedElements[i]);
+        }
+
+        const numberOfSigns = arrayOfClickedElements
+                                .filter(element=>element == 'x' || element== '/' || element == '+' || element == '-')
+                                .reduce((tot, signs)=>{
+                                    return tot+1;
+                                },0);                            
+    
+        if(numberOfSigns>1){
+            
+            let firstPair = clickedElements.slice(0, clickedElements.length - 1);
+            const listOfOperatorSigns = Array.from(document.querySelectorAll('.operator'));
+            const firstOperatorSign = listOfOperatorSigns
+                                        .map(operateSign => operateSign.textContent)
+                                        .filter(sign=>firstPair.includes(sign))
+             
+            let clickedNumbers = firstPair.split(firstOperatorSign[0]);
+            firstNumber = parseInt(clickedNumbers[0]);
+            secondNumber = parseInt(clickedNumbers[1]);
+            const answer = operate(firstNumber, secondNumber, firstOperatorSign[0]);
+            const answerDiv = document.createElement('div');
+            answerDiv.textContent = answer;
+            result.appendChild(answerDiv);
+        }
     })
 });
 
