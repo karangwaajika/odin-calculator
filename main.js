@@ -9,6 +9,8 @@ const operators = document.querySelectorAll('.operator');
 const clear = document.querySelector('.clear');
 const body = document.querySelector('body');
 const decimal = document.querySelector('.decimal');
+const deleteBtn = document.querySelector('.delete');
+const keyboard = document.querySelector('.keyboard');
 
 
 const add = (a, b)=>{
@@ -77,7 +79,10 @@ decimal.addEventListener('click',e=>{
         }
     }                           
 })
-
+deleteBtn.addEventListener('click', ()=>{
+    let subResult = result.textContent.slice(0,result.textContent.length-1); //remove the last element
+    result.textContent = subResult;
+})
 operators.forEach(sign => {
     sign.addEventListener('click', sign=>{
         firstNumber = result.textContent;
