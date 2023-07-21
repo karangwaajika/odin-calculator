@@ -25,19 +25,19 @@ function operate(nbr1, nbr2, operator){
     switch (operator){
         case '+':
             const plus = add(nbr1, nbr2);
-            return plus;
+            return Math.round(plus * 10) / 10;
             break;
         case '-':
             const minus = subtract(nbr1, nbr2);
-            return minus;
+            return Math.round(minus * 10) / 10;
             break;
         case 'x':
             const times = multiply(nbr1, nbr2);
-            return times;
+            return Math.round(times * 10) / 10;
             break;
         default:
             const divides = divide(nbr1, nbr2);
-            return divides;
+            return Math.round(divides * 10) / 10;
             break;
     }
         
