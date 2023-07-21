@@ -76,8 +76,8 @@ operators.forEach(sign => {
                                         .filter(sign=>firstPair.includes(sign))
              
             let clickedNumbers = firstPair.split(firstOperatorSign[0]);
-            firstNumber = parseInt(clickedNumbers[0]);
-            secondNumber = parseInt(clickedNumbers[1]);
+            firstNumber = Number(clickedNumbers[0]);
+            secondNumber = Number(clickedNumbers[1]);
             const answer = operate(firstNumber, secondNumber, firstOperatorSign[0]);
             
             operatorSign = clickedElements[clickedElements.length - 1];
@@ -90,8 +90,8 @@ operators.forEach(sign => {
 
 equal.addEventListener('click', ()=>{
     let clickedNumbers = result.textContent.split(operatorSign);
-    secondNumber = parseInt(clickedNumbers[1]);
-    const answer = operate(parseInt(firstNumber), secondNumber, operatorSign);
+    secondNumber = Number(clickedNumbers[1]);
+    const answer = operate(Number(firstNumber), secondNumber, operatorSign);
     const answerDiv = document.createElement('div');
     answerDiv.textContent = answer;
     result.appendChild(answerDiv);
