@@ -7,6 +7,7 @@ const result = document.querySelector('.result');
 const equal = document.querySelector('.equal');
 const operators = document.querySelectorAll('.operator');
 const clear = document.querySelector('.clear');
+const body = document.querySelector('body');
 
 
 const add = (a, b)=>{
@@ -104,10 +105,18 @@ equal.addEventListener('click', ()=>{
             alert("Please Provide Second Number!");
         }
         else{
-            const answer = operate(Number(firstNumber), Number(secondNumber), operatorSign);
-            const answerDiv = document.createElement('div');
-            answerDiv.textContent = answer;
-            result.appendChild(answerDiv);
+            if(secondNumber == '0' && operatorSign =='/'){
+                const errorDiv = document.createElement('div');
+                errorDiv.classList.add('error');
+                errorDiv.textContent = "You can't devide by 0 !!!";
+                body.appendChild(errorDiv);
+            }
+            else{
+                const answer = operate(Number(firstNumber), Number(secondNumber), operatorSign);
+                const answerDiv = document.createElement('div');
+                answerDiv.textContent = answer;
+                result.appendChild(answerDiv);
+            }
         }
     }
 })

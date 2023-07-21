@@ -48,4 +48,15 @@ button.equal{
     color:white;
 
 }
+.error{
+    border: 1px solid #f38b8b;
+    border-radius: 5px;
+    padding: 20px;
+    width: 402px;
+    margin:auto;
+    color:black;
+    background-color: rgb(243, 139, 139);
+    margin-top: 30px;
+    text-align: center;
+}
 
