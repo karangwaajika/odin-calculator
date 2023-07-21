@@ -10,7 +10,7 @@ const clear = document.querySelector('.clear');
 const body = document.querySelector('body');
 const decimal = document.querySelector('.decimal');
 const deleteBtn = document.querySelector('.delete');
-const keyboard = document.querySelector('.keyboard');
+
 
 
 const add = (a, b)=>{
@@ -91,6 +91,12 @@ operators.forEach(sign => {
         }
         else if(x.target.textContent == 'x' && firstNumber == ''){
             result.textContent = firstNumber;
+        }
+        else if(firstNumber[firstNumber.length -2] == '/' && firstNumber[firstNumber.length -1] == '0'){
+            const errorDiv = document.createElement('div');
+            errorDiv.classList.add('error');
+            errorDiv.textContent = "You can't devide by 0 !!!";
+            body.appendChild(errorDiv);
         }
         else if(x.target.textContent == '+' && firstNumber == ''){
             result.textContent = firstNumber;
