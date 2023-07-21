@@ -105,30 +105,55 @@ operators.forEach(sign => {
                 arrayOfClickedElements.push(clickedElements[i]);
             }
     
-            const numberOfSigns = arrayOfClickedElements
+            let numberOfSigns = arrayOfClickedElements
                                     .filter(element=>element == 'x' || element== '/' || element == '+' || element == '-')
                                     .reduce((tot, signs)=>{
                                         return tot+1;
-                                    },0);                            
+                                    },0);  
+            if(clickedElements[0] == '-'){
+                numberOfSigns--;
+                if(numberOfSigns>1){
+                
+                    let firstPair = clickedElements.slice(0, clickedElements.length - 1);
+                    let withNoMinusSign = firstPair.slice(1);
+                    console.log(`no = ${withNoMinusSign}`);
+                    const listOfOperatorSigns = Array.from(document.querySelectorAll('.operator'));
+                    const firstOperatorSign = listOfOperatorSigns
+                                                .map(operateSign => operateSign.textContent)
+                                                .filter(e=>withNoMinusSign.includes(e));
+                                           
+                    let clickedNumbers = firstPair.split(firstOperatorSign[0]);
+                    firstNumber = Number(clickedNumbers[0]);
+                    secondNumber = Number(clickedNumbers[1]);
+                    const answer = operate(firstNumber, secondNumber, firstOperatorSign[0]);
+                    
+                    operatorSign = clickedElements[clickedElements.length - 1];
+                    firstNumber = answer;
+                    result.textContent = `${firstNumber}${operatorSign}`
         
-            if(numberOfSigns>1){
+                }
+            } 
+            else{
+                if(numberOfSigns>1){
                 
-                let firstPair = clickedElements.slice(0, clickedElements.length - 1);
-                const listOfOperatorSigns = Array.from(document.querySelectorAll('.operator'));
-                const firstOperatorSign = listOfOperatorSigns
-                                            .map(operateSign => operateSign.textContent)
-                                            .filter(e=>firstPair.includes(e))
-                 
-                let clickedNumbers = firstPair.split(firstOperatorSign[0]);
-                firstNumber = Number(clickedNumbers[0]);
-                secondNumber = Number(clickedNumbers[1]);
-                const answer = operate(firstNumber, secondNumber, firstOperatorSign[0]);
-                
-                operatorSign = clickedElements[clickedElements.length - 1];
-                firstNumber = answer;
-                result.textContent = `${firstNumber}${operatorSign}`
-    
-            }
+                    let firstPair = clickedElements.slice(0, clickedElements.length - 1);
+                    const listOfOperatorSigns = Array.from(document.querySelectorAll('.operator'));
+                    const firstOperatorSign = listOfOperatorSigns
+                                                .map(operateSign => operateSign.textContent)
+                                                .filter(e=>firstPair.includes(e));
+                                                                 
+                    let clickedNumbers = firstPair.split(firstOperatorSign[0]);
+                    firstNumber = Number(clickedNumbers[0]);
+                    secondNumber = Number(clickedNumbers[1]);
+                    const answer = operate(firstNumber, secondNumber, firstOperatorSign[0]);
+                    
+                    operatorSign = clickedElements[clickedElements.length - 1];
+                    firstNumber = answer;
+                    result.textContent = `${firstNumber}${operatorSign}`
+        
+                }
+            }                                                 
+           
 
         }
        
