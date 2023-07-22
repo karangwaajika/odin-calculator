@@ -143,58 +143,117 @@ operators.forEach(sign => {
             if(clickedElements[0] == '-'){
                 numberOfSigns--;
                 if(numberOfSigns>1){
-                
-                    let firstPair = clickedElements.slice(0, clickedElements.length - 1);
-                    let withNoMinusSign = firstPair.slice(1);
-                    console.log(`no = ${withNoMinusSign}`);
-                    const listOfOperatorSigns = Array.from(document.querySelectorAll('.operator'));
-                    const firstOperatorSign = listOfOperatorSigns
-                                                .map(operateSign => operateSign.textContent)
-                                                .filter(e=>withNoMinusSign.includes(e));
-                                           
-                    let clickedNumbers = firstPair.split(firstOperatorSign[0]);
-                    firstNumber = Number(clickedNumbers[0]);
-                    secondNumber = Number(clickedNumbers[1]);
-                    if(secondNumber != '' || secondNumber =='0'){
-                        const answer = operate(firstNumber, secondNumber, firstOperatorSign[0]);
-                    
-                        operatorSign = clickedElements[clickedElements.length - 1];
-                        firstNumber = answer;
-                        result.textContent = `${firstNumber}${operatorSign}`;
+                    let inputText=clickedElements.toString();
+                    if(inputText[inputText.length -2] == 'x' && inputText[inputText.length -1] =='-'){
+                        result.textContent += ''; // in case x sign is followed by - sign do not operate right way 
+                    }
+                    else if(inputText[inputText.length -2] == '/' && inputText[inputText.length -1] =='-'){
+                        result.textContent += '';   // in case / sign is followed by - sign do not operate right way
                     }
                     else{
-                        result.textContent = `${firstNumber}${x.target.textContent}`;
+                
+                        let firstPair = clickedElements.slice(0, clickedElements.length - 1);
+                        let withNoMinusSign = firstPair.slice(1);
+                        const listOfOperatorSigns = Array.from(document.querySelectorAll('.operator'));
+                        const firstOperatorSign = listOfOperatorSigns
+                                                    .map(operateSign => operateSign.textContent)
+                                                    .filter(e=>withNoMinusSign.includes(e));
+                         
+                                                
+                        if(firstOperatorSign[0] == '-'){
+                           
+                            let inputText=withNoMinusSign;
+                            let positionOfOperator=inputText.indexOf(firstOperatorSign[0]);
+                            if(firstOperatorSign[0] == '-' && inputText[positionOfOperator -1] == 'x' ){ // checking if has "first-number x- second-number"
+                                let clickedNumbers = withNoMinusSign.split('x');
+                                firstNumber = Number('-'+clickedNumbers[0]);
+                                secondNumber = Number(clickedNumbers[1]);
+                                firstOperatorSign[0] = 'x';
+                            }
+                            else if(firstOperatorSign[0] == '-' && inputText[positionOfOperator -1] == '/'){// checking if has "first-number /- second-number"
+                                let clickedNumbers = withNoMinusSign.split('/');
+                                firstNumber = Number('-'+clickedNumbers[0]);
+                                secondNumber = Number(clickedNumbers[1]);
+                                firstOperatorSign[0] = '/';
+                            }
+                            else{
+                                let clickedNumbers = withNoMinusSign.split(firstOperatorSign[0]);
+                                firstNumber = Number('-'+clickedNumbers[0]);
+                                secondNumber = Number(clickedNumbers[1]);
+                            } 
+                        
+                         
+                        }
+                        else{
+                            
+                            let clickedNumbers = firstPair.split(firstOperatorSign[0]);
+                            firstNumber = Number(clickedNumbers[0]);
+                            secondNumber = Number(clickedNumbers[1]);  
+                        }                       
+                        
+                        if(secondNumber != '' || secondNumber =='0'){
+                            const answer = operate(firstNumber, secondNumber, firstOperatorSign[0]);
+                        
+                            operatorSign = clickedElements[clickedElements.length - 1];
+                            firstNumber = answer;
+                            result.textContent = `${firstNumber}${operatorSign}`;
+                        }
+                        else{
+                            result.textContent = `${firstNumber}${x.target.textContent}`;
+                        }
+                    
                     }
-                    
-                    
         
                 }
             } 
             else{
                 if(numberOfSigns>1){
-                
-                    let firstPair = clickedElements.slice(0, clickedElements.length - 1);
-                    const listOfOperatorSigns = Array.from(document.querySelectorAll('.operator'));
-                    const firstOperatorSign = listOfOperatorSigns
-                                                .map(operateSign => operateSign.textContent)
-                                                .filter(e=>firstPair.includes(e));
-                                                                 
-                    let clickedNumbers = firstPair.split(firstOperatorSign[0]);
-                    firstNumber = Number(clickedNumbers[0]);
-                    secondNumber = Number(clickedNumbers[1]);
-                    console.log(secondNumber);
-                    if(secondNumber != '' || secondNumber =='0' ){
-                        const answer = operate(firstNumber, secondNumber, firstOperatorSign[0]);
-                    
-                        operatorSign = clickedElements[clickedElements.length - 1];
-                        firstNumber = answer;
-                        result.textContent = `${firstNumber}${operatorSign}`;
-                        console.log(result.textContent)
+                    let inputText=clickedElements.toString();
+                    if(inputText[inputText.length -2] == 'x' && inputText[inputText.length -1] =='-'){
+                        result.textContent += ''; // in case x sign is followed by - sign do not operate right way 
+                    }
+                    else if(inputText[inputText.length -2] == '/' && inputText[inputText.length -1] =='-'){
+                        result.textContent += '';   // in case / sign is followed by - sign do not operate right way
                     }
                     else{
-                        result.textContent = `${firstNumber}${x.target.textContent}`;
+                        let firstPair = clickedElements.slice(0, clickedElements.length - 1);
+                        const listOfOperatorSigns = Array.from(document.querySelectorAll('.operator'));
+                        const firstOperatorSign = listOfOperatorSigns
+                                                    .map(operateSign => operateSign.textContent)
+                                                    .filter(e=>firstPair.includes(e));
+                        
+                                                    
+                        let inputText=firstPair;
+                        let positionOfOperator=inputText.indexOf(firstOperatorSign[0]);
+                        if(firstOperatorSign[0] == '-' && inputText[positionOfOperator -1] == 'x' ){ // checking if has "first-number x- second-number"
+                            let clickedNumbers = firstPair.split('x');
+                            firstNumber = Number(clickedNumbers[0]);
+                            secondNumber = Number(clickedNumbers[1]);
+                            firstOperatorSign[0] = 'x';
+                        }
+                        else if(firstOperatorSign[0] == '-' && inputText[positionOfOperator -1] == '/'){// checking if has "first-number /- second-number"
+                            let clickedNumbers = firstPair.split('/');
+                            firstNumber = Number(clickedNumbers[0]);
+                            secondNumber = Number(clickedNumbers[1]);
+                            firstOperatorSign[0] = '/';
+                        }
+                        else{
+                            let clickedNumbers = firstPair.split(firstOperatorSign[0]);
+                            firstNumber = Number(clickedNumbers[0]);
+                            secondNumber = Number(clickedNumbers[1]);
+                        }                            
+                        
+                        if(secondNumber != '' || secondNumber =='0' ){
+                            const answer = operate(firstNumber, secondNumber, firstOperatorSign[0]);
+                        
+                            operatorSign = clickedElements[clickedElements.length - 1];
+                            firstNumber = answer;
+                            result.textContent = `${firstNumber}${operatorSign}`;
+                        }
+                        else{
+                            result.textContent = `${firstNumber}${x.target.textContent}`;
+                        }
                     }
-                    
                     
         
                 }
@@ -212,8 +271,26 @@ equal.addEventListener('click', ()=>{
         alert("Please Provide an Operator!");
     }
     else{
-        let clickedNumbers = result.textContent.split(operatorSign);
-        secondNumber = clickedNumbers[1];
+        let inputText=result.textContent;
+        let positionOfOperator=inputText.indexOf(operatorSign);
+        if(operatorSign == '-' && inputText[positionOfOperator -1] == 'x' ){ // checking if has "first-number x- second-number"
+            let clickedNumbers = result.textContent.split('x');
+            firstNumber = clickedNumbers[0];
+            secondNumber = clickedNumbers[1];
+            operatorSign = 'x';
+        }
+        else if(operatorSign == '-' && inputText[positionOfOperator -1] == '/'){// checking if has "first-number /- second-number"
+            let clickedNumbers = result.textContent.split('/');
+            firstNumber = clickedNumbers[0];
+            secondNumber = clickedNumbers[1];
+            operatorSign = '/';
+        }
+        else{
+            let clickedNumbers = result.textContent.split(operatorSign);
+            secondNumber = clickedNumbers[1];
+        }
+        
+        
         if(firstNumber == ''){
             alert("Please Provide First Number!");
         }
