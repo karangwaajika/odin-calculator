@@ -116,7 +116,7 @@ operators.forEach(sign => {
         else if(firstNumber[firstNumber.length -2] == '/' && firstNumber[firstNumber.length -1] == '0'){
             const errorDiv = document.createElement('div');
             errorDiv.classList.add('error');
-            errorDiv.textContent = "You can't devide by 0 !!!";
+            errorDiv.textContent = "You can't divide by 0 !!!";
             body.appendChild(errorDiv);
         }
         else if(x.target.textContent == '+' && firstNumber == ''){
@@ -286,8 +286,17 @@ equal.addEventListener('click', ()=>{
             operatorSign = '/';
         }
         else{
-            let clickedNumbers = result.textContent.split(operatorSign);
-            secondNumber = clickedNumbers[1];
+            if(operatorSign == '-'){
+                let withNoMinusSign = inputText.slice(1);
+                let clickedNumbers = withNoMinusSign.split(operatorSign);
+                firstNumber = `-${clickedNumbers[0]}`;
+                secondNumber = clickedNumbers[1];
+            }
+            else{
+                let clickedNumbers = result.textContent.split(operatorSign);
+                secondNumber = clickedNumbers[1];
+            }
+            
         }
         
         
@@ -301,7 +310,7 @@ equal.addEventListener('click', ()=>{
             if(secondNumber == '0' && operatorSign =='/'){
                 const errorDiv = document.createElement('div');
                 errorDiv.classList.add('error');
-                errorDiv.textContent = "You can't devide by 0 !!!";
+                errorDiv.textContent = "You can't divide by 0 !!!";
                 body.appendChild(errorDiv);
             }
             else{
