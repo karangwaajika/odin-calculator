@@ -54,6 +54,10 @@ numbers.forEach(nbr => {
             result.firstElementChild.remove(); 
             result.textContent = e.target.textContent;
         }
+        else if(body.lastElementChild.getAttribute('class') == "error"){
+            body.lastElementChild.remove();
+            result.textContent += e.target.textContent;
+        }
         else{
             result.textContent += e.target.textContent;
         }
@@ -89,6 +93,9 @@ decimal.addEventListener('click',e=>{
     }                           
 })
 deleteBtn.addEventListener('click', ()=>{
+    if(body.lastElementChild.getAttribute('class') == "error"){
+        body.lastElementChild.remove();
+    }
     let subResult = result.textContent.slice(0,result.textContent.length-1); //remove the last element
     result.textContent = subResult;
 })
@@ -96,6 +103,9 @@ operators.forEach(sign => {
     sign.addEventListener('click', x=>{
         if(result.firstElementChild !== null){
             result.firstElementChild.remove(); 
+        }
+        if(body.lastElementChild.getAttribute('class') == "error"){
+            body.lastElementChild.remove();
         }
         
         let checkSequenceOperator = 0;
@@ -348,4 +358,7 @@ equal.addEventListener('click', ()=>{
 
 clear.addEventListener('click', ()=>{
     result.textContent = '';
+    if(body.lastElementChild.getAttribute('class') == "error"){
+        body.lastElementChild.remove();
+    }
 })
