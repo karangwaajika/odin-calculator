@@ -155,7 +155,7 @@ operators.forEach(sign => {
                     let clickedNumbers = firstPair.split(firstOperatorSign[0]);
                     firstNumber = Number(clickedNumbers[0]);
                     secondNumber = Number(clickedNumbers[1]);
-                    if(secondNumber != ''){
+                    if(secondNumber != '' || secondNumber =='0'){
                         const answer = operate(firstNumber, secondNumber, firstOperatorSign[0]);
                     
                         operatorSign = clickedElements[clickedElements.length - 1];
@@ -182,12 +182,14 @@ operators.forEach(sign => {
                     let clickedNumbers = firstPair.split(firstOperatorSign[0]);
                     firstNumber = Number(clickedNumbers[0]);
                     secondNumber = Number(clickedNumbers[1]);
-                    if(secondNumber != ''){
+                    console.log(secondNumber);
+                    if(secondNumber != '' || secondNumber =='0' ){
                         const answer = operate(firstNumber, secondNumber, firstOperatorSign[0]);
                     
                         operatorSign = clickedElements[clickedElements.length - 1];
                         firstNumber = answer;
                         result.textContent = `${firstNumber}${operatorSign}`;
+                        console.log(result.textContent)
                     }
                     else{
                         result.textContent = `${firstNumber}${x.target.textContent}`;
