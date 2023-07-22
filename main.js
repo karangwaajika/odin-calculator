@@ -122,6 +122,18 @@ operators.forEach(sign => {
         else if(x.target.textContent == '+' && firstNumber == ''){
             result.textContent = firstNumber;
         }
+        else if(firstNumber[firstNumber.length -1] =='x' && x.target.textContent == '/'){
+            result.textContent = firstNumber; // prevent "x/" signs be used one after another
+        }
+        else if(firstNumber[firstNumber.length -1] =='/' && x.target.textContent == 'x'){
+            result.textContent = firstNumber; //prevent "/x" signs be used one after another
+        }
+        else if(firstNumber[firstNumber.length -1] =='-' && firstNumber[firstNumber.length -2] =='x'){
+            result.textContent = firstNumber; //prevent 3 consecutive signs
+        }
+        else if(firstNumber[firstNumber.length -1] =='-' && firstNumber[firstNumber.length -2] =='/'){
+            result.textContent = firstNumber; //prevent 3 consecutive signs
+        }
         else if(checkSequenceOperator > 0 && x.target.textContent == firstNumber[firstNumber.length -1]){
             result.textContent = firstNumber;
         }
