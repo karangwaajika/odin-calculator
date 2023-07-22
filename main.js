@@ -50,7 +50,15 @@ function operate(nbr1, nbr2, operator){
 
 numbers.forEach(nbr => {
     nbr.addEventListener('click',e=>{
-        result.textContent += e.target.textContent;
+        if(result.firstElementChild !== null){
+            result.firstElementChild.remove(); 
+            result.textContent = e.target.textContent;
+        }
+        else{
+            result.textContent += e.target.textContent;
+        }
+
+
     })
 });
 
@@ -86,6 +94,10 @@ deleteBtn.addEventListener('click', ()=>{
 })
 operators.forEach(sign => {
     sign.addEventListener('click', x=>{
+        if(result.firstElementChild !== null){
+            result.firstElementChild.remove(); 
+        }
+        
         let checkSequenceOperator = 0;
         firstNumber = result.textContent;
         let operatorsElement = Array.from(operators).map(el => el.textContent);
