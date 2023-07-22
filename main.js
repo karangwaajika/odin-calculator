@@ -298,11 +298,22 @@ equal.addEventListener('click', ()=>{
             operatorSign = '/';
         }
         else{
-            if(operatorSign == '-'){
+            if(operatorSign == '-' && inputText[0] =='-'){
                 let withNoMinusSign = inputText.slice(1);
-                let clickedNumbers = withNoMinusSign.split(operatorSign);
-                firstNumber = `-${clickedNumbers[0]}`;
-                secondNumber = clickedNumbers[1];
+                let positionOfOperator=withNoMinusSign.indexOf(operatorSign);
+                
+                if(withNoMinusSign[positionOfOperator -1] == '/'){
+                    let clickedNumbers = withNoMinusSign.split('/');
+                    firstNumber = `-${clickedNumbers[0]}`;
+                    secondNumber = clickedNumbers[1];
+                    operatorSign = '/';
+                }
+                else{
+                    let clickedNumbers = withNoMinusSign.split(operatorSign);
+                    firstNumber = `-${clickedNumbers[0]}`;
+                    secondNumber = clickedNumbers[1];
+                }
+                
             }
             else{
                 let clickedNumbers = result.textContent.split(operatorSign);
