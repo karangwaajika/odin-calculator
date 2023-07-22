@@ -27,12 +27,14 @@ button{
     width: 400px;
     border: 1px solid black;
     text-align: right;
+    height: 80px;
     padding: 20px;
     border-radius: 9px 9px 0 0;
 }
 button.operator{
-    background-color: rgb(236, 236, 236);
+    background-color: #80b680;
     font-size: 20px;
+    color: white;
 }
 button.decimal{
     border-radius: 0 0 0 9px ;
@@ -44,8 +46,8 @@ button.delete{
     border-radius: 0 0 9px 0 ;
 }
 button.equal{
-    border: 1px solid #3882F6;
-    background: #3882F6;
+    border: 1px solid black;
+    background: #80b680;
     font-size: 40px;
     padding: 18px;
     color:white;
@@ -62,4 +64,9 @@ button.equal{
     margin-top: 30px;
     text-align: center;
 }
+button:active{
+    background-color: #bce9a3;
+}
+
+
 

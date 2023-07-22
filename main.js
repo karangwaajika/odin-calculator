@@ -160,10 +160,10 @@ operators.forEach(sign => {
                     
                         operatorSign = clickedElements[clickedElements.length - 1];
                         firstNumber = answer;
-                        result.textContent = `${firstNumber}${operatorSign}`
+                        result.textContent = `${firstNumber}${operatorSign}`;
                     }
                     else{
-                        result.textContent = firstNumber+x.target.textContent;
+                        result.textContent = `${firstNumber}${x.target.textContent}`;
                     }
                     
                     
@@ -187,10 +187,10 @@ operators.forEach(sign => {
                     
                         operatorSign = clickedElements[clickedElements.length - 1];
                         firstNumber = answer;
-                        result.textContent = `${firstNumber}${operatorSign}`
+                        result.textContent = `${firstNumber}${operatorSign}`;
                     }
                     else{
-                        result.textContent = firstNumber+x.target.textContent;
+                        result.textContent = `${firstNumber}${x.target.textContent}`;
                     }
                     
                     
