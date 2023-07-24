@@ -318,6 +318,13 @@ equal.addEventListener('click', ()=>{
                     secondNumber = clickedNumbers[1];
                     operatorSign = '/';
                 }
+                 else if(withNoMinusSign[positionOfOperator -1] == 'x'){
+                    let clickedNumbers = withNoMinusSign.split('x');
+                    firstNumber = `-${clickedNumbers[0]}`;
+                    secondNumber = clickedNumbers[1];
+                    operatorSign = 'x';
+                    
+                }
                 else{
                     let clickedNumbers = withNoMinusSign.split(operatorSign);
                     firstNumber = `-${clickedNumbers[0]}`;
