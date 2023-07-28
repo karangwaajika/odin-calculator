@@ -96,8 +96,14 @@ deleteBtn.addEventListener('click', ()=>{
     if(body.lastElementChild.getAttribute('class') == "error"){
         body.lastElementChild.remove();
     }
-    let subResult = result.textContent.slice(0,result.textContent.length-1); //remove the last element
-    result.textContent = subResult;
+    if(result.lastElementChild !== null){
+        result.lastElementChild.remove();
+    }
+    else{
+        let subResult = result.textContent.slice(0,result.textContent.length-1); //remove the last element
+        result.textContent = subResult;
+    }
+    
 })
 operators.forEach(sign => {
     sign.addEventListener('click', x=>{
@@ -371,6 +377,7 @@ equal.addEventListener('click', ()=>{
             else{
                 const answer = operate(Number(firstNumber), Number(secondNumber), operatorSign);
                 const answerDiv = document.createElement('div');
+                answerDiv.classList.add('answer');
                 answerDiv.textContent = answer;
                 result.appendChild(answerDiv);
             }
