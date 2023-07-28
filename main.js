@@ -310,7 +310,8 @@ operators.forEach(sign => {
 });
 
 equal.addEventListener('click', ()=>{
-    
+    if(result.lastElementChild == null){
+
     if(operatorSign === undefined){
         alert("Please Provide an Operator!");
     }
@@ -383,6 +384,7 @@ equal.addEventListener('click', ()=>{
             }
         }
     }
+}
 })
 
 clear.addEventListener('click', ()=>{
