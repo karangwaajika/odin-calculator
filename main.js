@@ -116,6 +116,7 @@ operators.forEach(sign => {
                 checkSequenceOperator++;
             }
         }
+        
                        
         if(x.target.textContent == '/' && firstNumber == ''){
             result.textContent = firstNumber;
@@ -135,6 +136,15 @@ operators.forEach(sign => {
         else if(firstNumber[firstNumber.length -1] =='x' && x.target.textContent == '/'){
             result.textContent = firstNumber; // prevent "x/" signs be used one after another
         }
+        else if(firstNumber[0] == '-' && checkSequenceOperator > 0 && x.target.textContent == 'x'){
+            result.textContent = firstNumber; // prevent "-x" signs be used one after another if - is the first number
+        }
+        else if(firstNumber[0] == '-' && checkSequenceOperator > 0 && x.target.textContent == '/'){
+            result.textContent = firstNumber; // prevent "-x" signs be used one after another if - is the first number
+        }
+        else if(firstNumber[0] == '-' && checkSequenceOperator > 0 && x.target.textContent == '+'){
+            result.textContent = firstNumber; // prevent "-x" signs be used one after another if - is the first number
+        }
         else if(firstNumber[firstNumber.length -1] =='/' && x.target.textContent == 'x'){
             result.textContent = firstNumber; //prevent "/x" signs be used one after another
         }
@@ -143,6 +153,12 @@ operators.forEach(sign => {
         }
         else if(firstNumber[firstNumber.length -1] =='-' && firstNumber[firstNumber.length -2] =='/'){
             result.textContent = firstNumber; //prevent 3 consecutive signs
+        }
+        else if(firstNumber[firstNumber.length -1] =='x' && x.target.textContent =='+'){
+            result.textContent = firstNumber; //prevent x+ consecutive signs
+        }
+        else if(firstNumber[firstNumber.length -1] =='/' && x.target.textContent =='+'){
+            result.textContent = firstNumber; //prevent /+ consecutive signs
         }
         else if(checkSequenceOperator > 0 && x.target.textContent == firstNumber[firstNumber.length -1]){
             result.textContent = firstNumber;
@@ -338,7 +354,6 @@ equal.addEventListener('click', ()=>{
             }
             
         }
-        
         
         if(firstNumber == ''){
             alert("Please Provide First Number!");
