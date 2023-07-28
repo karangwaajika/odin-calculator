@@ -361,8 +361,6 @@ equal.addEventListener('click', ()=>{
             }
             
         }
-        console.log(firstNumber)
-        console.log(secondNumber)
         if(firstNumber == ''){
             alert("Please Provide First Number!");
         }
