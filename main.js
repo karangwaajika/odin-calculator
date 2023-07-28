@@ -361,11 +361,12 @@ equal.addEventListener('click', ()=>{
             }
             
         }
-        
+        console.log(firstNumber)
+        console.log(secondNumber)
         if(firstNumber == ''){
             alert("Please Provide First Number!");
         }
-        else if(secondNumber == ''){
+        else if(secondNumber == '' || secondNumber == undefined){
             alert("Please Provide Second Number!");
         }
         else{
